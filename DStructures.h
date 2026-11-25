@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 //node classes
@@ -9,6 +8,7 @@ public:
     Node *next;
     Node(int info) {
         this->info = info;
+        this->next = nullptr;
     }
     ~Node() {}
 };
@@ -19,29 +19,62 @@ class DoubleNode: public Node {
 //data structure classes
 class Stack {
 
-    Node *head;
+    Node *top;
 
+public:
 
     Stack() {
-        head = nullptr;
+        top = nullptr;
     }
+
+    ~Stack() {
+        while (top != nullptr) {
+            Node *deletedNode = top;
+            top = top->next;
+            delete deletedNode;
+        }
+    };
 
     void push(int info) {
-
         Node *temp = new Node(info);
 
-        if (isEmpty() == true) {
-            head = temp;
-        }
+        if (isEmpty()) {
+            top = temp;
+        } //for empty stack
 
-        else if (isEmpty() == false) {
+        else if (!isEmpty()) {
+            Node *cur = top;
+            top = temp;
+            top->next = cur;
+        } //for non-empty stack
 
-        }
     }
-    void pop() {}
-    void peek() {}
+
+    void pop() {
+
+        if (isEmpty()) {
+            cout << "Cannot pop. Stack is empty\n";
+        } //for empty stack
+
+        if (!isEmpty()) {
+
+            Node *deletedNode = top;
+            top = top->next;
+            delete deletedNode;
+        } //for non-empty stack
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            return -1;
+
+        } //for empty stack
+
+        return top->info; //for non-empty stack
+    }
+
     bool isEmpty() {
-        if (head == nullptr) return true;
+        if (top == nullptr) return true;
         return false;
     }
 };
