@@ -1,46 +1,87 @@
+#pragma once
 #include <iostream>
-#include <vector>
+
 using namespace std;
 
 //node classes
+template <typename T>
 class Node {
 public:
-    int info;
-    Node *next;
-    Node(int info) {
+    T info;
+    Node<T> *next;
+
+    Node(T info) {
         this->info = info;
+        this->next = nullptr;
     }
     ~Node() {}
 };
-class DoubleNode: public Node {
-    Node *prev;
+
+template <typename T>
+class DoubleNode: public Node<T> {
+public:
+    Node<T> *prev;
 };
 
 //data structure classes
+template <typename T>
 class Stack {
 
-    Node *head;
+    Node<T> *top;
+
+public:
 
     Stack() {
-        head = nullptr;
+        top = nullptr;
     }
 
-    void push(int info) {
-
-        Node *temp = new Node(info);
-
-        if (isEmpty() == true) {
-            head = temp;
+    ~Stack() {
+        while (top != nullptr) {
+            Node<T> *deletedNode = top;
+            top = top->next;
+            delete deletedNode;
         }
+    };
 
-        else if (isEmpty() == false) {
+    void push(T info) {
+        Node<T> *temp = new Node<T>(info);
 
-        }
+        if (isEmpty()) {
+            top = temp;
+        } //for empty stack
+
+        else if (!isEmpty()) {
+            Node<T> *cur = top;
+            top = temp;
+            top->next = cur;
+        } //for non-empty stack
+
     }
-    void pop() {}
-    void peek() {}
+
+    void pop() {
+
+        if (isEmpty()) {
+            cout << "Cannot pop. Stack is empty\n";
+        } //for empty stack
+
+        if (!isEmpty()) {
+
+            Node<T> *deletedNode = top;
+            top = top->next;
+            delete deletedNode;
+        } //for non-empty stack
+    }
+
+    T peek() {
+        if (isEmpty()) {
+            throw std::runtime_error("Stack is empty");
+        } //for empty stack
+
+        return top->info; //for non-empty stack
+    }
+
     bool isEmpty() {
-        if (head == nullptr) return true;
+        if (top == nullptr) return true;
         return false;
     }
 };
