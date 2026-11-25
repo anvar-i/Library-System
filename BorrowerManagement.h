@@ -1,35 +1,25 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 #pragma once
 
 class BorrowerManagement {
-	//Constrictor
+	//Constructor
 public:
-	BorrowerManagement() {
-
-	}
-
-	void addBorrower(String name, String surname, int idOfBorrowedBook) { // you can change parameters
-
-	}
-
-	void searchBorrower(String name, String Surname) { // you can change parameters
-
-	}
-
-	void displayBorrowers() {
-
-	}
-
+	BorrowerManagement() {}
 	~BorrowerManagement() {};
 
+	void addBorrower(string name, string surname, int borrowedBookID) { /*You can change parameters*/ }
+	void searchBorrower(string name, string surname) { /*You can change parameters*/ }
+	void displayBorrowers() {}
 };
 
-class Borrower {
-	String name;
-	String surname;
-	int idOfBorrowedDook;
-	*Borrower next;
-	*Borrower prev;
-}
+class Borrower: public DoubleNode {
+	string name;
+	string surname;
+	int borrowedBookID;
+	Borrower *next;
+	Borrower *prev;
+};

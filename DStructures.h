@@ -2,14 +2,45 @@
 #include <vector>
 using namespace std;
 
-//class BookNode stores information about books
-class BookNode {
+//node classes
+class Node {
 public:
-    int ID;
-    string title;
-    BookNode(int ID, string title) {
-        this->ID = ID;
-        this->title = title;
+    int info;
+    Node *next;
+    Node(int info) {
+        this->info = info;
     }
-    ~BookNode() {}
+    ~Node() {}
+};
+class DoubleNode: public Node {
+    Node *prev;
+};
+
+//data structure classes
+class Stack {
+
+    Node *head;
+
+    Stack() {
+        head = nullptr;
+    }
+
+    void push(int info) {
+
+        Node *temp = new Node(info);
+
+        if (isEmpty() == true) {
+            head = temp;
+        }
+
+        else if (isEmpty() == false) {
+
+        }
+    }
+    void pop() {}
+    void peek() {}
+    bool isEmpty() {
+        if (head == nullptr) return true;
+        return false;
+    }
 };
