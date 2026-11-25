@@ -4,6 +4,14 @@
 
 using namespace std;
 
+struct Book {
+	int bookID;
+	string bookName;
+	string bookAuthor;
+	int yearPublished;
+	bool isAvailable;
+};
+
 class BookManagement {
 
 	//Constructor
@@ -18,15 +26,3 @@ public:
 	void Sort() {}
 
 };
-
-class Book: public Node {
-	int id;
-	string name;
-	string author;
-	int year;
-	// you can add your book parameters
-	Book *head;
-	Book *next;
-};
-
-#pragma once

@@ -1,25 +1,33 @@
+#pragma once
 #include <iostream>
+
 using namespace std;
 
 //node classes
+template <typename T>
 class Node {
 public:
-    int info;
-    Node *next;
-    Node(int info) {
+    T info;
+    Node<T> *next;
+
+    Node(T info) {
         this->info = info;
         this->next = nullptr;
     }
     ~Node() {}
 };
-class DoubleNode: public Node {
-    Node *prev;
+
+template <typename T>
+class DoubleNode: public Node<T> {
+public:
+    Node<T> *prev;
 };
 
 //data structure classes
+template <typename T>
 class Stack {
 
-    Node *top;
+    Node<T> *top;
 
 public:
 
@@ -29,21 +37,21 @@ public:
 
     ~Stack() {
         while (top != nullptr) {
-            Node *deletedNode = top;
+            Node<T> *deletedNode = top;
             top = top->next;
             delete deletedNode;
         }
     };
 
-    void push(int info) {
-        Node *temp = new Node(info);
+    void push(T info) {
+        Node<T> *temp = new Node<T>(info);
 
         if (isEmpty()) {
             top = temp;
         } //for empty stack
 
         else if (!isEmpty()) {
-            Node *cur = top;
+            Node<T> *cur = top;
             top = temp;
             top->next = cur;
         } //for non-empty stack
@@ -58,16 +66,15 @@ public:
 
         if (!isEmpty()) {
 
-            Node *deletedNode = top;
+            Node<T> *deletedNode = top;
             top = top->next;
             delete deletedNode;
         } //for non-empty stack
     }
 
-    int peek() {
+    T peek() {
         if (isEmpty()) {
-            return -1;
-
+            throw std::runtime_error("Stack is empty");
         } //for empty stack
 
         return top->info; //for non-empty stack

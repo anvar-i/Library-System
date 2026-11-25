@@ -1,12 +1,11 @@
 #include <iostream>
-#include "./History.h"
-#include "./BookManagement.h"
-#include "./BorrowerMAnagement.h"
-#include "./Registration.h"
+#include <string>
+#include "History.h"
+#include "BookManagement.h"
+#include "BorrowerMAnagement.h"
+#include "Registration.h"
 
 using namespace std;
-
-#include <string>
 
 int main() {
 	return 0;

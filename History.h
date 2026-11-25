@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
-#include <vector>
+#include "DStructures.h"
+
 using namespace std;
 
 //identifying operation type
@@ -14,40 +14,62 @@ enum operationType {
 struct Operation {
 	int operationType;
 	static int operationID;
-	string bookName;
 	int bookID;
-	string personName;
+	int personID;
 };
 
 int Operation::operationID = 0;
 
 //class HistoryStack to store history
-class HistoryStack {
+class HistoryStack: public Stack<Operation> {
 
-	vector<Operation> history;
+	Node<Operation> *lastOperation;
 
-	HistoryStack() {}
-	~HistoryStack() {}
+public:
+	HistoryStack() {
+		lastOperation = nullptr;
+	}
+
+	~HistoryStack() {
+		while (lastOperation != nullptr) {
+			Node<Operation> *deletedOperation = lastOperation;
+			lastOperation = lastOperation->next;
+			delete deletedOperation;
+		}
+	}
 
 	//push
-	void addOperation(int operationType, string bookName, int bookID, string personName) {
+	void addOperation(int operationType, int bookID, int personID) {
 		Operation op;
 		op.operationType = operationType;
-		op.bookName = bookName;
 		op.bookID = bookID;
-		op.personName = personName;
+		op.personID = personID;
 
-		history.push_back(op);
+		push(op);
 		Operation::operationID++;
+		cout << "Operation added to history successfully\n";
 	}
 
 	//pop
 	void deleteLastOperation() {
-		
+		pop();
+		Operation::operationID++;
+		cout << "Last operation deleted from history successfully\n";
 	}
-	void seeLastOperation() {} //peek
-	void isEmptyHistory() {} //isEmpty
+
+	void seeLastOperation() {
+		Operation lastOperation = peek();
+
+		cout << "=== Last operation details ===\n";
+		cout << "Operation type: " << lastOperation.operationType << endl;
+		cout << "Operation ID: " << lastOperation.operationID;
+		cout << "Book ID: " << lastOperation.bookID;
+		cout << "Person ID: " << lastOperation.personID;
+	} //peek
+
+	bool isEmptyHistory() {
+		return isEmpty();
+	} //isEmpty
+
 	void displayHistory() {} //NEEDS WORK
 };
-
-//history = {operationType, operationID, bookName, bookID, personName}

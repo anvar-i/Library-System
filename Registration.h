@@ -25,6 +25,6 @@ public:
 class User {
 	User* next;
 	User* prev;
-	String name;
-	String surname;
+	string name;
+	string surname;
 };
