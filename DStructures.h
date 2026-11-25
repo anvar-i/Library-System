@@ -21,6 +21,7 @@ class Stack {
 
     Node *head;
 
+
     Stack() {
         head = nullptr;
     }
