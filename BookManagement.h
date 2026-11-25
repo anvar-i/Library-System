@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "DStructures.h"
 
 using namespace std;

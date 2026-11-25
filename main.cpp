@@ -3,8 +3,11 @@
 #include "./BookManagement.h"
 #include "./BorrowerMAnagement.h"
 #include "./Registration.h"
+
 using namespace std;
-#include <String>
+
+#include <string>
+
 int main() {
 	return 0;
 }
