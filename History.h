@@ -21,9 +21,9 @@ struct Operation {
 int Operation::operationID = 0;
 
 //class HistoryStack to store history
-class HistoryStack: public Stack<Operation> {
+class HistoryStack : public Stack<Operation> {
 
-	Node<Operation> *lastOperation;
+	Node<Operation>* lastOperation;
 
 public:
 	HistoryStack() {
@@ -32,7 +32,7 @@ public:
 
 	~HistoryStack() {
 		while (lastOperation != nullptr) {
-			Node<Operation> *deletedOperation = lastOperation;
+			Node<Operation>* deletedOperation = lastOperation;
 			lastOperation = lastOperation->next;
 			delete deletedOperation;
 		}

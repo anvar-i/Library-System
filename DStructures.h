@@ -8,7 +8,7 @@ template <typename T>
 class Node {
 public:
     T info;
-    Node<T> *next;
+    Node<T>* next;
 
     Node(T info) {
         this->info = info;
@@ -18,16 +18,21 @@ public:
 };
 
 template <typename T>
-class DoubleNode: public Node<T> {
+class DoubleNode : public Node<T> {
 public:
-    Node<T> *prev;
+    DoubleNode<T>* prev;
+
+    DoubleNode(T info) : Node<T>(info) {
+        prev = nullptr;
+        this->next = nullptr;
+    }
 };
 
 //data structure classes
 template <typename T>
 class Stack {
 
-    Node<T> *top;
+    Node<T>* top;
 
 public:
 
@@ -37,21 +42,21 @@ public:
 
     ~Stack() {
         while (top != nullptr) {
-            Node<T> *deletedNode = top;
+            Node<T>* deletedNode = top;
             top = top->next;
             delete deletedNode;
         }
     };
 
     void push(T info) {
-        Node<T> *temp = new Node<T>(info);
+        Node<T>* temp = new Node<T>(info);
 
         if (isEmpty()) {
             top = temp;
         } //for empty stack
 
         else if (!isEmpty()) {
-            Node<T> *cur = top;
+            Node<T>* cur = top;
             top = temp;
             top->next = cur;
         } //for non-empty stack
@@ -66,7 +71,7 @@ public:
 
         if (!isEmpty()) {
 
-            Node<T> *deletedNode = top;
+            Node<T>* deletedNode = top;
             top = top->next;
             delete deletedNode;
         } //for non-empty stack
