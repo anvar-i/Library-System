@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "DStructures.h"
 using namespace std;
 
-class Book : public Node {
+class Book {
 public:
 	int id;
 	string name;
