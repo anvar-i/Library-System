@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.4)
+cmake_minimum_required(VERSION 3.20)
 project(Library_System)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -11,5 +11,4 @@ add_executable(Library_System
         DStructures.h
         History.h
         main.cpp
-        Menu.h
-        Registration.h)
+         Queue.h)
